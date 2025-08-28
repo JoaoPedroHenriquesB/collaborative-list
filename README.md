@@ -1,112 +1,182 @@
 # Collaborative List API
 
-A collaborative list application using Spring Boot. This application allows users to create rooms, and within these rooms, create and manage shared lists.
+![Java](https://img.shields.io/badge/Java-21-blue.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.5-green.svg)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)
+![Maven](https://img.shields.io/badge/Maven-3.8-red.svg)
 
-## Technologies Used
+A **Collaborative List API** é uma aplicação robusta desenvolvida com Spring Boot, projetada para facilitar a criação e o gerenciamento de listas compartilhadas em tempo real. Ideal para equipes, famílias ou qualquer grupo que precise organizar tarefas, compras ou ideias de forma colaborativa.
 
-*   **Java 21**
-*   **Spring Boot 3.5.5**
-    *   Spring Web
-    *   Spring Data JPA
-    *   Spring Security
-    *   Spring Boot DevTools
-*   **MySQL**
-*   **Lombok**
-*   **Maven**
+## Funcionalidades
 
-## How to Run
+*   **Autenticação de Usuários:** Registro e login seguros para acesso à API.
+*   **Gerenciamento de Salas:** Crie e gerencie salas colaborativas, cada uma com seu próprio conjunto de listas.
+*   **Listas Compartilhadas:** Dentro de cada sala, os usuários podem criar e organizar múltiplas listas.
+*   **Itens de Lista:** Adicione, visualize e remova itens de qualquer lista.
+*   **Colaboração em Tempo Real:** Permite que múltiplos usuários interajam com as mesmas listas simultaneamente.
 
-1.  **Clone the repository:**
+## Tecnologias Utilizadas
+
+*   **Backend:**
+    *   Java 21
+    *   Spring Boot 3.5.5 (Web, Data JPA, Security, Validation, DevTools)
+    *   Lombok
+*   **Banco de Dados:**
+    *   MySQL (via `mysql-connector-j`)
+*   **Gerenciamento de Dependências:**
+    *   Maven
+
+## Como Executar
+
+### Pré-requisitos
+
+Certifique-se de ter os seguintes softwares instalados em sua máquina:
+
+*   **Java Development Kit (JDK) 21**
+*   **Apache Maven 3.8+**
+*   **MySQL Server 8.0+**
+
+### Configuração do Banco de Dados
+
+1.  **Crie um banco de dados MySQL** chamado `collaborative_list`.
+2.  **Configure as variáveis de ambiente** para as credenciais do seu banco de dados. É altamente recomendável não hardcodar senhas no `application.properties`.
+
+    Você pode criar um arquivo `.env` (e adicioná-lo ao `.gitignore`) ou configurar diretamente no seu ambiente:
+
+    ```bash
+    export DB_URL="jdbc:mysql://localhost:3306/collaborative_list?createDatabaseIfNotExist=true"
+    export DB_USER="your_mysql_username"
+    export DB_PASSWORD="your_mysql_password"
+    ```
+
+    Alternativamente, você pode modificar `src/main/resources/application.properties` para usar variáveis de ambiente:
+
+    ```properties
+    spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/collaborative_list?createDatabaseIfNotExist=true}
+    spring.datasource.username=${DB_USER:root}
+    spring.datasource.password=${DB_PASSWORD:Jphb@032636}
+    ```
+    **Nota:** O valor `Jphb@032636` é um exemplo. **Substitua-o pela sua senha real ou use variáveis de ambiente.**
+
+### Executando a Aplicação
+
+1.  **Clone o repositório:**
     ```bash
     git clone https://github.com/your-username/collaborative-list.git
+    cd collaborative-list
     ```
-2.  **Configure the database:**
-    *   Open `src/main/resources/application.properties`.
-    *   Set the `DB_URL`, `DB_USER`, and `DB_PASSWORD` environment variables to your MySQL database credentials.
-3.  **Run the application:**
+2.  **Compile o projeto:**
+    ```bash
+    ./mvnw clean install
+    ```
+3.  **Execute a aplicação:**
     ```bash
     ./mvnw spring-boot:run
     ```
-    The application will be available at `http://localhost:8080`.
 
-## API Endpoints
+    A aplicação estará disponível em `http://localhost:8080`.
 
-### Authentication
+## Estrutura do Projeto
 
-*   **Register a new user:**
-    *   `POST /register`
-    *   **Request Body:**
+*   `src/main/java/com/jpdev/collaborative_list/`: Contém o código-fonte principal da aplicação.
+    *   `controller/`: Classes que lidam com as requisições HTTP e definem os endpoints da API.
+    *   `dto/`: Objetos de Transferência de Dados (DTOs) para comunicação entre camadas.
+    *   `entity/`: Entidades JPA que mapeiam as tabelas do banco de dados.
+    *   `exception/`: Classes de exceção personalizadas.
+    *   `repository/`: Interfaces de repositório para acesso a dados (Spring Data JPA).
+    *   `service/`: Classes de serviço que contêm a lógica de negócio.
+*   `src/main/resources/`: Contém arquivos de configuração e recursos estáticos.
+    *   `application.properties`: Configurações da aplicação (porta, banco de dados, etc.).
+*   `pom.xml`: Arquivo de configuração do Maven, define dependências e plugins.
+
+## Endpoints da API
+
+A API é organizada em módulos para autenticação, gerenciamento de salas, listas e itens.
+
+### Autenticação
+
+*   **`POST /register`**
+    *   **Descrição:** Registra um novo usuário no sistema.
+    *   **Corpo da Requisição:**
         ```json
         {
-            "username": "your-username",
-            "password": "your-password"
+            "username": "novo_usuario",
+            "password": "senha_segura"
         }
         ```
-*   **Login:**
-    *   `POST /login`
-    *   **Request Body:**
+*   **`POST /login`**
+    *   **Descrição:** Autentica um usuário existente e retorna uma mensagem de sucesso.
+    *   **Corpo da Requisição:**
         ```json
         {
-            "username": "your-username",
-            "password": "your-password"
+            "username": "usuario_existente",
+            "password": "sua_senha"
         }
         ```
 
-### Rooms
+### Salas (Rooms)
 
-*   **Create a new room:**
-    *   `POST /rooms/create`
-    *   **Request Body:**
+*   **`POST /rooms/create`**
+    *   **Descrição:** Cria uma nova sala colaborativa.
+    *   **Corpo da Requisição:**
         ```json
         {
-            "name": "My Room"
+            "name": "Minha Nova Sala"
         }
         ```
-*   **Delete a room:**
-    *   `DELETE /rooms/{roomId}/delete`
-*   **Get all rooms:**
-    *   `GET /rooms`
-*   **Join a room:**
-    *   `POST /rooms/join`
-    *   **Request Body:**
+*   **`DELETE /rooms/{roomId}/delete`**
+    *   **Descrição:** Exclui uma sala existente pelo seu ID.
+*   **`GET /rooms`**
+    *   **Descrição:** Retorna uma lista de todas as salas disponíveis.
+*   **`POST /rooms/join`**
+    *   **Descrição:** Permite que um usuário entre em uma sala usando um código de sala.
+    *   **Corpo da Requisição:**
         ```json
         {
-            "roomCode": "your-room-code"
+            "roomCode": "CODIGO_DA_SALA"
         }
         ```
-*   **Get room code:**
-    *   `GET /rooms/{roomId}/code`
-*   **Get room by ID:**
-    *   `GET /rooms/{roomId}`
+*   **`GET /rooms/{roomId}/code`**
+    *   **Descrição:** Retorna o código de acesso de uma sala específica.
+*   **`GET /rooms/{roomId}`**
+    *   **Descrição:** Retorna os detalhes de uma sala específica pelo seu ID.
 
-### Lists
+### Listas (Lists)
 
-*   **Get lists by room:**
-    *   `GET /lists/{roomId}`
-*   **Create a new list in a room:**
-    *   `POST /lists/{roomId}/create`
-    *   **Request Body:**
+*   **`GET /lists/{roomId}`**
+    *   **Descrição:** Retorna todas as listas associadas a uma sala específica.
+*   **`POST /lists/{roomId}/create`**
+    *   **Descrição:** Cria uma nova lista dentro de uma sala.
+    *   **Corpo da Requisição:**
         ```json
         {
-            "name": "My List"
+            "name": "Lista de Compras"
         }
         ```
-*   **Get list by ID:**
-    *   `GET /lists/id/{listId}`
+*   **`GET /lists/id/{listId}`**
+    *   **Descrição:** Retorna os detalhes de uma lista específica pelo seu ID.
 
-### Items
+### Itens (Items)
 
-*   **Create a new item in a list:**
-    *   `POST /items/{roomId}/{listId}/create`
-    *   **Request Body:**
+*   **`POST /items/{roomId}/{listId}/create`**
+    *   **Descrição:** Adiciona um novo item a uma lista específica dentro de uma sala.
+    *   **Corpo da Requisição:**
         ```json
         {
-            "name": "My Item"
+            "name": "Comprar Leite"
         }
         ```
-*   **Get items by list ID:**
-    *   `GET /items/{listId}`
-*   **Get item by ID:**
-    *   `GET /items/id/{itemId}`
-*   **Delete an item:**
-    *   `DELETE /items/{itemId}`
+*   **`GET /items/{listId}`**
+    *   **Descrição:** Retorna todos os itens de uma lista específica.
+*   **`GET /items/id/{itemId}`**
+    *   **Descrição:** Retorna os detalhes de um item específico pelo seu ID.
+*   **`DELETE /items/{itemId}`**
+    *   **Descrição:** Exclui um item de uma lista pelo seu ID.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
