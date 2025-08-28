@@ -174,10 +174,9 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
     *   **Descrição:** Exclui um item de uma lista pelo seu ID.
 
 ## Atualizações
-
-# Criar um FrontEnd
-# Adaptar algumas funcionalidades
-# Melhorias futuras
+1. *Criar um FrontEnd.*
+2. *Adaptar algumas funcionalidades.*
+2. *Melhorias futuras.*
 
 ## Contribuição
 
