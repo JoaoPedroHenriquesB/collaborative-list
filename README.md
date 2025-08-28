@@ -174,6 +174,8 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
     *   **Descrição:** Exclui um item de uma lista pelo seu ID.
 
 ## Geral
+
+*PostMan
         ```json
     {
         "roomID": 1,
@@ -200,6 +202,20 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
                     {
                         "itemId": 4,
                         "itemName": "Carne"
+                    }
+                ]
+            },
+            {
+                "listId": 2,
+                "listName": "Receita",
+                "items": [
+                    {
+                        "itemId": 5,
+                        "itemName": "500g de farinha"
+                    },
+                    {
+                        "itemId": 6,
+                        "itemName": "375ml de água"
                     }
                 ]
             }
