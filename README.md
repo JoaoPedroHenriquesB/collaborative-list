@@ -173,9 +173,8 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
 *   **`DELETE /items/{itemId}`**
     *   **Descrição:** Exclui um item de uma lista pelo seu ID.
 
-## Geral
+## PostMan
 
-**PostMan**
  ```json
     {
         "roomID": 1,
