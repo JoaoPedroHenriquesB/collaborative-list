@@ -3,7 +3,7 @@ package com.jpdev.collaborative_list.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jpdev.collaborative_list.dto.AddItemRequest;
+import com.jpdev.collaborative_list.dto.ItemRequest;
 import com.jpdev.collaborative_list.entity.ItemEntity;
 import com.jpdev.collaborative_list.entity.ListEntity;
 import com.jpdev.collaborative_list.exception.ItemNotFoundException;
@@ -23,12 +23,10 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemEntity createItem(Integer roomId, Integer listId, AddItemRequest request) {
+    public ItemEntity createItem(Integer roomId, Integer listId, ItemRequest request) {
         ListEntity list = listService.getListById(listId);
-
         ItemEntity item = ItemEntity.builder()
-                .name(request.getName())
-                .description(request.getDescription())
+                .itemName(request.getItemName())  
                 .list(list)
                 .build();
 

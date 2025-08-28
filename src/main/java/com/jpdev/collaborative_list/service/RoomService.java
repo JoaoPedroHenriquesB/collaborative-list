@@ -42,7 +42,7 @@ public class RoomService {
         String roomCode = generateRoomCode();
 
         RoomEntity newRoom = RoomEntity.builder()
-                .code(roomCode)
+                .roomCode(roomCode)
                 .creatorName(request.getCreatorName())
                 .build();
 
@@ -70,7 +70,7 @@ public class RoomService {
 
     @Transactional(readOnly = true)
     public RoomEntity getRoomByCode(String roomCode) {
-        return roomRepository.findByCode(roomCode)
+        return roomRepository.findByRoomCode(roomCode)
                 .orElseThrow(() -> new RoomNotFoundException("Room not found with code: " + roomCode));
     }
 
@@ -78,7 +78,7 @@ public class RoomService {
     public String getRoomCode(Integer roomId) {
         RoomEntity room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new RoomNotFoundException("Room not found with id: " + roomId));
-        return room.getCode();
+        return room.getRoomCode();
     }
 
     @Transactional(readOnly = true)

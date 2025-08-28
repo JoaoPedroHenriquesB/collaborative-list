@@ -17,11 +17,11 @@ public class ListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "listId")
-    private Integer id;
+    @Column(name = "idList", nullable = false)
+    private Integer listId;
 
-    @Column(name = "listName", nullable = false, length = 100)
-    private String name;
+    @Column(name = "listName",nullable = false, length = 100)
+    private String listName;
 
     @JsonIgnore
     @ManyToOne

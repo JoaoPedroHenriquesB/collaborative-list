@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jpdev.collaborative_list.entity.ItemEntity;
 import com.jpdev.collaborative_list.entity.ListEntity;
 import com.jpdev.collaborative_list.service.ListService;
 
@@ -56,15 +55,7 @@ public class ListController {
         }
     }
 
-    @PostMapping("/{listId}/items")
-    public ResponseEntity<ItemEntity> createdItem(@PathVariable Integer listId, @RequestBody ItemEntity item) {
-        try {
-            ItemEntity newItem = listService.addItemToList(listId, item);
-            return ResponseEntity.status(HttpStatus.CREATED).body(newItem);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+    
     
 
 }

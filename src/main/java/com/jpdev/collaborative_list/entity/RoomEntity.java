@@ -18,10 +18,10 @@ public class RoomEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roomID")
-    private Integer id;
+    private Integer roomID;
 
     @Column(name = "roomCode", nullable = false, unique = true, length = 10)
-    private String code;
+    private String roomCode;
 
     @Column(name = "creatorName", nullable = false, length = 100)
     private String creatorName;

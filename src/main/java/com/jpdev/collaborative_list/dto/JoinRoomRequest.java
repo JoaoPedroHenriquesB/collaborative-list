@@ -12,6 +12,6 @@ public class JoinRoomRequest {
     @NotBlank(message = "Room code is required")
     private String roomCode;
     
-    @NotBlank(message = "User name is required")
-    private String userName;
+        @NotBlank(message = "User name is required")
+    private String username;
 }

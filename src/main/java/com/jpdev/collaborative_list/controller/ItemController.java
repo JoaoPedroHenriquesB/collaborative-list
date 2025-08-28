@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jpdev.collaborative_list.dto.AddItemRequest;
+import com.jpdev.collaborative_list.dto.ItemRequest;
 import com.jpdev.collaborative_list.entity.ItemEntity;
 import com.jpdev.collaborative_list.service.ItemService;
 
@@ -30,7 +30,7 @@ public class ItemController {
     public ResponseEntity<ItemEntity> createItem(
             @PathVariable Integer roomId, 
             @PathVariable Integer listId, 
-            @RequestBody AddItemRequest request) {
+            @RequestBody ItemRequest request) {
         ItemEntity createdItem = itemService.createItem(roomId, listId, request);
         return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
     }

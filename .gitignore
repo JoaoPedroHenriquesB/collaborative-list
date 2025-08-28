@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Sensitive files
+application.properties
+
+# Log files
+*.log
+
+# Heap dump files
+*.hprof
