@@ -221,9 +221,9 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
             }
         ]
     }
-        ```
+  ```
 
-## Atualizações
+## Atualizações futuras
 1. *Criar um FrontEnd.*
 2. *Adaptar algumas funcionalidades.*
 2. *Melhorias futuras.*
