@@ -175,8 +175,8 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
 
 ## Geral
 
-*PostMan
-        ```json
+**PostMan**
+ ```json
     {
         "roomID": 1,
         "roomCode": "T8MH0X",
