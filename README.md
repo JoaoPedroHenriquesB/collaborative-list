@@ -173,6 +173,40 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
 *   **`DELETE /items/{itemId}`**
     *   **Descrição:** Exclui um item de uma lista pelo seu ID.
 
+
+        ```json
+    {
+        "roomID": 1,
+        "roomCode": "T8MH0X",
+        "creatorName": "Joao Pedro",
+        "creationTime": "2025-08-28T17:38:30.33781",
+        "lists": [
+            {
+                "listId": 1,
+                "listName": "Compras",
+                "items": [
+                    {
+                        "itemId": 1,
+                        "itemName": "Leite"
+                    },
+                    {
+                        "itemId": 2,
+                        "itemName": "Arroz"
+                    },
+                    {
+                        "itemId": 3,
+                        "itemName": "Refrigerante"
+                    },
+                    {
+                        "itemId": 4,
+                        "itemName": "Carne"
+                    }
+                ]
+            }
+        ]
+    }
+        ```
+
 ## Atualizações
 1. *Criar um FrontEnd.*
 2. *Adaptar algumas funcionalidades.*
