@@ -173,6 +173,11 @@ A API é organizada em módulos para autenticação, gerenciamento de salas, lis
 *   **`DELETE /items/{itemId}`**
     *   **Descrição:** Exclui um item de uma lista pelo seu ID.
 
+## Atualizações
+
+Criar um FrontEnd
+Adaptar algumas funcionalidades
+
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
