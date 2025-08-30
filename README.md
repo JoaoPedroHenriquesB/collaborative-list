@@ -53,16 +53,16 @@ Certifique-se de ter os seguintes softwares instalados em sua máquina:
 
     ```properties
     spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/collaborative_list?createDatabaseIfNotExist=true}
-    spring.datasource.username=${DB_USER:root}
-    spring.datasource.password=${DB_PASSWORD:Jphb@032636}
+    spring.datasource.username=${DB_USER:YourUser}
+    spring.datasource.password=${DB_PASSWORD:YourPass}
     ```
-    **Nota:** O valor `Jphb@032636` é um exemplo. **Substitua-o pela sua senha real ou use variáveis de ambiente.**
+    **Nota:** Os valores acima são um exemplo. **Substitua-o pela sua senha real ou use variáveis de ambiente.**
 
 ### Executando a Aplicação
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/your-username/collaborative-list.git
+    git clone https://github.com/your-username/collaborative-list.git](https://github.com/JoaoPedroHenriquesB/collaborative-list.git
     cd collaborative-list
     ```
 2.  **Compile o projeto:**
